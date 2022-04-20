@@ -42,12 +42,15 @@ group :development, :test do
   gem 'pry'
   gem 'pry-byebug'
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  gem 'rspec-rails'
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
 end
 
 group :test do
-  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'faker'
   gem 'shoulda-matchers'
+  gem 'json_spec'
 end
 
 group :development do
