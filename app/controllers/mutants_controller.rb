@@ -9,7 +9,10 @@ class MutantsController < ApplicationController
   end
 
   def create
-    
+    detect_mutant = AnalizeDna.new(params[:dna])
+    detect_mutant.mutant?
+
+    render json: { response: detect_mutant.message }, status: :ok
   end
 
   private
@@ -21,5 +24,4 @@ class MutantsController < ApplicationController
     render json: { error: dna_pattern.error, code: 403 }, status: :forbidden \
       unless dna_pattern.valid_patterns
   end
-
 end
