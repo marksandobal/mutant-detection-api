@@ -5,7 +5,7 @@ class AddSubjectTable < ActiveRecord::Migration[7.0]
       t.string :surname
       t.string :last_name
       t.string :code_name
-      t.integer :gender
+      t.string :gender
       t.integer :age
       t.boolean :mutant
       t.string :address

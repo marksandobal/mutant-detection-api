@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 # Analyzes human DNA to detect mutans
-class AnalizeDna
+class MutantDetectionService
   SEQUENCY_LETTERS = %w[A C G T].freeze
   POSITONS = [0, 1, 2, 3, 4, 5].freeze
 
-  attr_reader :human_dna, :sequency_in_dna_count, :message
+  attr_reader :human_dna, :sequency_in_dna_count, :message, :is_mutant
 
   def initialize(human_dna)
     @human_dna = human_dna
@@ -13,16 +13,18 @@ class AnalizeDna
   end
 
   def mutant?
-    process_dna
-    return true, @message = 'El sujeto es mutante' if sequency_in_dna_count > 1
+    analize_dna
+    @is_mutant = sequency_in_dna_count > 1
+    return true, @message = I18n.t('.services.mutant_detection_service.is_mutant') if is_mutant
 
-    @message = 'El sujeto no es mutante'
+    @message = I18n.t('.services.mutant_detection_service.is_not_mutant')
+    create_subject
     false
   end
 
   private
 
-  def process_dna
+  def analize_dna
     split_dna = human_dna.map { |dna| dna.split('') }
     process_oblique_secuency(split_dna)
     process_horizontal_sequency(split_dna)
@@ -80,5 +82,9 @@ class AnalizeDna
     return dna_table[z_index][index] if position_array.eql?('vertical')
 
     dna_table[index][z_index]
+  end
+
+  def create_subject
+    RecordSubject.new(human_dna, is_mutant).find_or_create
   end
 end

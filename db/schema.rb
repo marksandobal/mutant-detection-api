@@ -28,7 +28,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_20_012936) do
     t.string "surname"
     t.string "last_name"
     t.string "code_name"
-    t.integer "gender"
+    t.string "gender"
     t.integer "age"
     t.boolean "mutant"
     t.string "address"

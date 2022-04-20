@@ -2,6 +2,7 @@
 
 # Validate if human DNA has the correct pattern
 class ValidateStringDna
+  INVALID_DNA_CODE = %w[B D E F H I J K L M N Ñ O P Q R S U V W X Y Z].freeze
   attr_accessor :human_dna, :invalid_adn, :valid_patterns, :error
 
   def initialize(human_dna)
@@ -21,19 +22,19 @@ class ValidateStringDna
 
     @valid_patterns = false unless invalid_adn.count.zero?
 
-    @error = "Existen secuencias de ADN incorrectas: #{invalid_adn}"
+    @error = I18n.t('.services.validate_string_dna.incorrect_dna_sequency', invalid_dna: invalid_adn)
   end
 
   private
 
   def empty_human_dna_data
     @valid_patterns = false
-    @error = "el parámetro 'adn' no puede estar vacío."
+    @error = I18n.t('.services.validate_string_dna.empty_params')
   end
 
   def invalid_pattern(patter)
     codes = patter.split('')
-    result = codes.map { |code| true if %w[B D E F H I J K L M N Ñ O P Q R S U V W X Y Z].include?(code) }
+    result = codes.map { |code| true if INVALID_DNA_CODE.include?(code) }
 
     result.reject(&:nil?).first
   end
@@ -43,7 +44,7 @@ class ValidateStringDna
     return true unless validation.include?(false)
 
     @valid_patterns = false
-    @error = 'Una de las secuencias no cumple con el tamaño de longitud de 6'
+    @error = I18n.t('.services.validate_string_dna.bad_length_patter')
     valid_patterns
   end
 end

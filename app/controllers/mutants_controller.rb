@@ -4,12 +4,8 @@
 class MutantsController < ApplicationController
   before_action :dna_patther_valid?, only: [:create]
 
-  def index
-    render json: { hola: "Hola" }
-  end
-
   def create
-    detect_mutant = AnalizeDna.new(params[:dna])
+    detect_mutant = MutantDetectionService.new(params[:dna])
     detect_mutant.mutant?
 
     render json: { response: detect_mutant.message }, status: :ok
