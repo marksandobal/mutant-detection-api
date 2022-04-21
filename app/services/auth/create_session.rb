@@ -12,8 +12,8 @@ module Auth
 
     def generate_token
       @user = User.find_by(email: email)
-      raise Mutants::Exceptions::Authentication, "#{email} not found" unless user
-      raise Mutants::Exceptions::Authentication, "password of #{email} not found"\
+      raise Mutant::Exceptions::Authentication, "#{email} not found" unless user
+      raise Mutant::Exceptions::Authentication, "password of #{email} not found"\
        unless user.password_digest && user.authenticate(password)
 
       token = user.to_token

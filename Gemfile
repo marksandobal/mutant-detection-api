@@ -41,6 +41,7 @@ gem "rack-cors"
 gem 'active_model_serializers'
 
 group :development, :test do
+  gem 'faker'
   gem 'pry'
   gem 'pry-byebug'
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -50,7 +51,6 @@ end
 
 group :test do
   gem 'factory_bot_rails'
-  gem 'faker'
   gem 'shoulda-matchers'
   gem 'json_spec'
 end

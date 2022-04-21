@@ -29,10 +29,16 @@ This app was developed with the following characteristics:
     $ rake db:schema:load
     ```
 
-* How to run the app
+## How to run the app
   run local host with rails server
-  run local network with rails server -d ip_network -p Port
-  example: rails server -b 192.168.1.2 -p 3000
+  run local network with
+  ```sh 
+  rails server -d ip_network -p Port
+  ```
+  example: 
+   ```sh 
+    rails server -b 192.168.1.2 -p 3000
+  ```
 
 ## Testing
 
