@@ -7,3 +7,6 @@ es-MX:
       incorrect_dna_sequency: "Existen secuencias de ADN incorrectas: %{invalid_dna}"
       empty_params: "El parámetro 'adn' no puede estar vacío."
       bad_length_patter: "Una de las secuencias no cumple con el tamaño de longitud de 6"
+  controller:
+    application_controller:
+      missing_token: "No se encontro el token de autenticación"

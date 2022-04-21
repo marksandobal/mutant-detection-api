@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
-  # resources :mutans, only: %i[index, create]
-  resources :stats, only: %i[index]
-
-  post 'mutant', to: 'mutants#create'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  namespace :api do
+    scope module: :v1, constraints: ApiVersionConstraint.new(version: 1) do
+      resources :sessions, only: [:create]
+      resources :stats, only: [:index]
+      resources :users, only: %i[index show create]
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+      post 'mutant', to: 'mutants#create'
+    end
+  end
 end

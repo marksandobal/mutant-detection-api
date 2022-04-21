@@ -18,7 +18,6 @@ class RecordSubject
 
   def attributes_subject
     {
-      code_name: generate_code_name,
       gender: 'undefined',
       mutant: mutant
     }
@@ -29,9 +28,5 @@ class RecordSubject
       subject: subject,
       dna_pattern: dna_pattern
     }
-  end
-
-  def generate_code_name
-    "Subject #{Subject.random_code}"
   end
 end

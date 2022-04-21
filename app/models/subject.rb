@@ -8,7 +8,15 @@ class Subject < ApplicationRecord
 
   validates :gender, inclusion: { in: GENDER_OPTIOPNS }
 
-  def self.random_code
-    rand(10) + count
+  before_save :assigned_code_name
+
+  private
+
+  def random_code
+    rand(10) + Subject.count
+  end
+
+  def assigned_code_name
+    self.code_name = "Subject #{random_code}" if code_name.blank?
   end
 end
